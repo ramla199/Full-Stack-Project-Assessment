@@ -1,13 +1,13 @@
 import "./App.css";
-import Videos from "./components/Videos";
+import Header from './components/Header';
+import Body from './components/Body';
+//import videos from './data/exampleresponse.json';
 
 function App() {
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>Video Recommendation</h1>
-      </header>
-      <Videos />
+      <Header />
+      <Body />
     </div>
   );
 }
