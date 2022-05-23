@@ -1,35 +1,13 @@
+import { useState } from 'react';
+import VideoAddInput from "./VideoAddInput";
+
+
 const VideoAddSec = () => {
+    const [show, setShow] = useState(false);
     return (
-        <div>
-            <a href="#">Add Video</a>
-            <form action="#">
-                <div className="video-add">
-                    <label for="title">
-                        Title
-                    </label>
-                    <input className="video-input input"
-                        name="title"
-                        type="text"
-                        required
-                    //  value={title}
-                    //  onChange={(e) => setTitle(e.target.value)}
-                    />
-                </div>
-                <div className="video-add">
-                    <label for="url">
-                        URL
-                    </label>
-
-                    <input className="video-input input"
-                        name="url"
-                        type="text"
-                        required
-                    // value={title}
-                    //  onChange={(e) => setTitle(e.target.value)}
-                    />
-
-                </div>
-            </form>
+        <div className="addvideo-wrapper">
+            <a href="#" onClick={() => setShow(!show)}>Add Video</a>
+            {show && <VideoAddInput />}
         </div>
     );
 }

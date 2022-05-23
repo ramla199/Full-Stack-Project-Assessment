@@ -25,7 +25,7 @@ body {
 .searchWraper {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 0.85rem;
+  margin-top: 1rem;
   height: 45%;
 }
 
@@ -42,12 +42,13 @@ body {
   box-shadow: 0 0 5px 0 rgb(5, 84, 124);
 }
 
-style-label {
+.style-label {
   display: inline-block;
 }
 
 .video-searchWraper {
   display: flex;
+  margin-bottom: 2.75rem;
   justify-content: center;
   align-items: center;
 }
@@ -55,6 +56,60 @@ style-label {
 .input {
   margin-left: 1rem;
 }
+
+.addvideo-wrapper {
+  margin-top: 1rem;
+}
+
+* > .video-add {
+  margin-top: 1rem;
+}
+
+
+.btn-video {
+  display: flex;
+  width: 100%;
+  padding: 0.5em 1em;
+  margin-top: 1rem;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn {
+  border: 1px solid;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+}
+
+.btn.btn-warning {
+  background-color: hsl(45, 100%, 51%);
+  border-color: hsl(45, 100%, 47%);
+  color: black;
+}
+
+.btn.btn-warning:hover,
+.btn.btn-warning:focus {
+  background-color: hsl(45, 100%, 45%);
+  box-shadow: 0 0 5px 0 hsl(45, 100%, 45%);
+}
+
+.btn.btn-danger {
+  background-color: hsl(354.3, 70%, 54%);
+  border-color: hsl(354.3, 70%, 49%);
+  color: white;
+}
+
+.btn.btn-danger:hover,
+.btn.btn-danger:focus {
+  background-color: hsl(354.3, 70%, 47%);
+  box-shadow: 0 0 5px 0 hsl(354.3, 70%, 43%);
+}
+
+
+
 /* @media (max-width: 350px) {
   .app-header {
     height: 20vh;
