@@ -1,9 +1,9 @@
 import VideoAddSec from "./VideoAddSec";
 import VideoSearchSec from "./VideoSearchSec";
-const AddVideo = ({ handlesearch }) => {
+const AddVideo = ({ handlesearch, handleSubmit }) => {
     return (
         <div className="searchWraper">
-            <VideoAddSec />
+            <VideoAddSec handleSubmit={handleSubmit} />
             <VideoSearchSec handlesearch={handlesearch} />
         </div>
     );

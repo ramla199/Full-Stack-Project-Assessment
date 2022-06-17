@@ -10,8 +10,12 @@ import Grid from '@material-ui/core/Grid'
 const ContentBody = () => {
     const [videoList, setVideoList] = useState([]);
     let [searchTerm, setSearchTerm] = useState('');
+    // http://localhost:3000//exampleresponse.json
+    //http://localhost:5000/
+
+
     useEffect(() => {
-        fetch('http://localhost:3000//exampleresponse.json')
+        fetch('http://localhost:5000/')
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
@@ -20,11 +24,29 @@ const ContentBody = () => {
     }, [])
 
     const handleDelete = async (id) => {
-        await fetch('http://localhost:3000/exampleresponse.json' + id, {
+        console.log(id);
+        await fetch(`http://localhost:5000/${id}`, {
             method: 'DELETE'
         })
-        const newList = videoList.filter(video => video.id !== id)
-        setVideoList(newList)
+
+        const newList = videoList.filter(video => video.id !== id);
+        console.log(newList);
+        setVideoList(newList);
+        // console.log('hi')
+    }
+
+    const handleSubmit = async (title, url) => {
+        console.log(title, url);
+        const videoData = {
+            title: title,
+            url: url
+        }
+        await fetch('http://localhost:5000', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(videoData)
+        })
+
     }
 
     function handlesearch(e) {
@@ -32,7 +54,7 @@ const ContentBody = () => {
     }
 
     return (<div className="content-body">
-        <AddVideo handlesearch={handlesearch} />
+        <AddVideo handlesearch={handlesearch} handleSubmit={handleSubmit} />
         <div className="video-list" style={{ padding: 35 }}>
             <Grid container alignItems="stretch" spacing={3} style={{ padding: 35 }}>
                 {videoList && videoList.filter(video => {
