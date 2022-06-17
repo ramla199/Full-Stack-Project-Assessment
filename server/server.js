@@ -50,7 +50,7 @@ app.post("/", (request, response) => {
   } else {
     response.status(200);
     videos.push(newVideo);
-    console.log(videos);
+    // console.log(videos);
     // response.redirect('/');
   }
 });
@@ -58,16 +58,16 @@ app.post("/", (request, response) => {
 
 
 app.delete("/:id", (request, response) => {
-  console.log(request.params.id);
+  // console.log(request.params.id);
   const id = Number(request.params.id);
   videos.map((video) => {
     video.id === id ? videos.splice(id, 1) : null;
   });
-  console.log(videos);
+  // console.log(videos);
   response.status(200);
   response.send({
     "result": "failure",
     "message": "Video could not be deleted"
   });
-  console.log(`You have deleted a message with id ${id}`)
+  // console.log(`You have deleted a message with id ${id}`)
 });
