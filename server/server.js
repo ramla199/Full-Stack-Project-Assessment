@@ -1,23 +1,47 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const videoModels = require('./models/videos');
 const uuid = require('uuid');
 const examplev = require('./exampleresponse.json');
+const mongoose = require('mongoose');
 const port = process.env.PORT || 5000;
+// connect to mongodb
+const dbURI = 'mongodb+srv://ramla55:ramla123@videodb.pqtx5nq.mongodb.net/videos-db?retryWrites=true&w=majority'
+//connect to mongoose
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(result => app.listen(port, () => console.log(`Listening on port ${port}`)))
+  .catch(err => console.log(err));
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 // Store and retrieve your videos from here
 // If you want, you can copy "exampleresponse.json" into here to have some data to work with
-let videos = examplev;
 
+
+
+let videos = examplev;
+console.log(videos);
 // GET "/"
 app.get("/", (req, res) => {
   // Delete this line after you've confirmed your server is running
   // res.send({ express: "Your Backend Service is Running" });
-  res.json(videos);
+  const videoList = new videoModels({
+    title: 'new blog',
+    url: 'about my new blog',
+    rating: 23
+  })
+  // const videoList = new videoModels(videos);
+  // console.log(videoList);
+  videoList.save()
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch((err) => console.log(err))
 });
 
 app.get("/:id", function (request, response) {
