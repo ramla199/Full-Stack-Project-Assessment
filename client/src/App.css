@@ -115,7 +115,26 @@ body {
   background-color: hsl(354.3, 70%, 47%);
   box-shadow: 0 0 5px 0 hsl(354.3, 70%, 43%);
 }
+.div-order {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 35px;
+}
 
+.btn.btn-order {
+   
+    width: 10%;
+    background-color: #fff;
+    border-color: #254e70;
+    color: #254e70;
+    text-align: center;
+}
+
+.btn.btn-order:hover,
+.btn.btn-order:focus {
+  background-color: #f8f8f8;
+  box-shadow: 0 0 5px 0 #254e70;
+}
 
 
 /* @media (max-width: 350px) {

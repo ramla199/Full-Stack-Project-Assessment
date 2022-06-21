@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         display: 'flex',
         backgroundColor: '#f8f8f8',
         height: 'auto',
-        minHeight: 550,
+        minHeight: 450,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
 
@@ -30,14 +30,14 @@ const useStyles = makeStyles({
         width: "100%",
         margin: 'Auto',
         marginTop: '-1px',
-        marginBottom: '-25px',
+        marginBottom: '-20px',
         height: 200
     },
 
     iconWrapper: {
         display: 'flex',
         justifyContent: 'space-around',
-        padding: 25,
+        // padding: 25,
         fontSize: 25,
     },
 
@@ -45,26 +45,30 @@ const useStyles = makeStyles({
 
 })
 
-const VideoSection = ({ vid, handleDelete }) => {
+const VideoSection = ({ vid, handleDelete, handleUpdate }) => {
     let [vidColor, setVidColor] = useState(false);
     let [vidColor2, setVidColor2] = useState(false);
     let [count, setCount] = useState(0);
     const classes = useStyles();
-    function increment(e) {
-        setCount(count++);
+    // console.log(vid)
+    function increment(id) {
+        setCount(++count);
         setVidColor(true);
+        handleUpdate(id, vid.rating);
 
     }
-    function decrement() {
+    function decrement(id) {
         if (count <= 0) {
             setCount(0);
             setVidColor2(false);
         } else {
-            setCount(count--);
+            setCount(--count);
             setVidColor2(true);
+            handleUpdate(id, vid.rating);
         }
 
     }
+    vid.rating = count;
     // console.log(vid.url);
     return (<div className="vid-wrapper">
         <Card elevation={1} className={classes.vidCard} sx={{ maxWidth: 350 }}>
@@ -73,17 +77,20 @@ const VideoSection = ({ vid, handleDelete }) => {
             />
 
             <div className={classes.iconWrapper}>
-                <ThumbUpRoundedIcon color={vidColor ? "primary" : ""} style={{ fontSize: 40 }} onClick={increment} />
+                <ThumbUpRoundedIcon color={vidColor ? "primary" : ""} style={{ fontSize: 40 }} onClick={() => increment(vid._id)} />
                 <span className="ratingCount">{count}</span>
-                <ThumbDownRoundedIcon color={vidColor2 ? "secondary" : ""} style={{ fontSize: 40 }} onClick={decrement} />
+                <ThumbDownRoundedIcon color={vidColor2 ? "secondary" : ""} style={{ fontSize: 40 }} onClick={() => decrement(vid._id)} />
             </div>
 
             <CardMedia className={classes.media}
                 component="iframe"
-                image={`${vid.url}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                image={`https://www.youtube.com/embed/${vid.embedId}`}
             />
-            <CardContent style={{ marginTop: 15 }}>
-                <Button variant="contained" startIcon={<DeleteIcon />} color="secondary" onClick={() => handleDelete(vid.id)}>
+            <CardContent style={{ marginTop: 10 }}>
+                <Button variant="contained" startIcon={<DeleteIcon />} color="secondary" onClick={() => handleDelete(vid._id)}>
                     Delete
                 </Button>
 

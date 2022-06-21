@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const videoSchema = new schema({
-    title: {
+    vidId: Number,
+
+    "title": {
         type: String,
         required: true
     },
-    url: {
+    "embedId": {
         type: String,
         required: true
     },
